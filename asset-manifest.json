@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/email-deploy/static/css/main.9942389e.css",
+    "main.js": "/email-deploy/static/js/main.28092e94.js",
+    "index.html": "/email-deploy/index.html",
+    "main.9942389e.css.map": "/email-deploy/static/css/main.9942389e.css.map",
+    "main.28092e94.js.map": "/email-deploy/static/js/main.28092e94.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9942389e.css",
+    "static/js/main.28092e94.js"
+  ]
+}
