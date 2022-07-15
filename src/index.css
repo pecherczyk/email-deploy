@@ -17,3 +17,12 @@ form {
   margin-top: 60px;
   margin-bottom: 20px;
 }
+
+.form-label {
+  min-width: 120px;
+  display: inline-block;
+}
+
+.row {
+  margin: 4px;
+}
