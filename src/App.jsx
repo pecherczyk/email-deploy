@@ -19,6 +19,10 @@ class App extends React.Component {
         <Template 
           name = {this.state.inputName}
           surname = {this.state.inputSurname}
+          dept = {this.state.inputDept}
+          tel = {this.state.inputTel}
+          emailName = {this.state.emailName}
+          emailSurname = {this.state.emailSurname}
         />
       </div>
   )}
