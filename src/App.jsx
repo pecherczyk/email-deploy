@@ -1,11 +1,42 @@
 import React from "react";
 import Form from "./Form";
+import validator from "./validator";
 import Template from "./Template";
 
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { email: ""}
+    this.state = {
+      inputName: '',
+      inputSurname: ''
+    }
+    this.handleClick = this.handleClick.bind(this)
+    this.processData = this.processData.bind(this)
+  }
+
+  handleClick(event) {
+    this.setState({[event.target.id]: event.target.value})
+  }
+
+  processData(event) {
+    let ok // true or false 
+
+    try {
+      let isOk = validator(event.target.id, event.target.value)
+      ok = isOk
+    } catch (err) {
+      console.error(err.message)
+    }
+    if (ok) {
+      this.setState({[event.target.id]: event.target.value})
+      event.target.className = 'correct'
+      this.setState({[event.target.id + '__ready']: 1})
+
+    } else {
+      this.setState({[event.target.id]: ''})
+      event.target.className = 'wrong'
+      this.setState({[event.target.id + '__ready']: 0})
+    }
   }
 
   callbackFunction = (formData) => {
@@ -13,17 +44,27 @@ class App extends React.Component {
   }
 
   render(){
+    let template
+    if (
+      this.state.inputName__ready === 1 &&
+      this.state.inputSurname__ready === 1
+    ) {
+      template = 
+      <Template 
+        name = {this.state.inputName}
+        surname = {this.state.inputSurname}
+      />
+    } else {
+      template = <div>Nie ma niczego</div>
+    }
     return (
       <div>
-        <Form formDataCallback = {this.callbackFunction} />
-        <Template 
-          name = {this.state.inputName}
-          surname = {this.state.inputSurname}
-          dept = {this.state.inputDept}
-          tel = {this.state.inputTel}
-          emailName = {this.state.emailName}
-          emailSurname = {this.state.emailSurname}
+        <Form
+          formDataCallback = {this.callbackFunction}
+          handleClick = {this.handleClick}
+          processData = {this.processData}
         />
+        {template}
       </div>
   )}
 }
