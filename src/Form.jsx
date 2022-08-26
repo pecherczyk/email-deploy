@@ -1,89 +1,70 @@
-import React from "react"
-import Output from "./Output"
-import removeDiacritics from "./emailHelper"
-
+import React from "react";
+import Header from "./Header";
+import "./Form.css";
 
 class Form extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      name: "",
-      surname: "",
-      tel: "",
-      dept: "",
-      email: ""
-    }
-    this.setName = this.setName.bind(this)
-    this.setSurname = this.setSurname.bind(this)
-    this.setDept = this.setDept.bind(this)
-    this.setTel = this.setTel.bind(this)
-  }
-  setName(event) {
-    this.setState({name: event.target.value})
-    this.setState({emailName: removeDiacritics(event.target.value)})
-  }
-  setSurname(event) {
-    this.setState({surname: event.target.value})
-    this.setState({emailSurname: removeDiacritics(event.target.value)})
-  }
-  setDept(event) {
-    this.setState({dept: event.target.value})
-  }
-  setTel(event) {
-    this.setState({tel: event.target.value})
+      ready: false
+    };
   }
 
   render() {
     return (
       <div className="container">
         <form>
-        <h1>Generator stopek e-mail</h1>
+          <Header domain="wpwik.pl" />
           <div className="container">
             <div className="row">
-              <div className="col-2">
-                <label htmlFor="inputName" className="form-label">Imię</label>
-              </div>
-              <div className="col">
-                <input type="text" id="inputName" onChange={this.setName} />
-              </div>
-            </div>
-            <div className="row align-items-start">
-              <div className="col-2">
-                <label htmlFor="inputSurname">Nazwisko</label>
-              </div>
-              <div className="col-2">
-                <input type="text" id="inputSurname" onChange={this.setSurname}/>
-              </div>
+              <label htmlFor="inputName" className="form-label">
+                Imię
+              </label>
+              <input
+                type="text"
+                id="inputName"
+                onChange={this.props.processData}
+                maxLength="15"
+              />
             </div>
             <div className="row">
-              <div className="col-2">
-                <label htmlFor="inputDept">Stanowisko</label>
-              </div>
-              <div className="col">
-                <input type="text" id="inputDept" onChange={this.setDept} />
-              </div>
+              <label htmlFor="inputSurname" className="form-label">
+                Nazwisko
+              </label>
+              <input
+                type="text"
+                id="inputSurname"
+                onChange={this.props.processData}
+                maxLength="28"
+              />
             </div>
             <div className="row">
-              <div className="col-2">
-                <label htmlFor="tel">Telefon</label>
-              </div>
-              <div className="col">
-                <input type="text" id="tel" onChange={this.setTel}/>
-              </div>
+              <label htmlFor="inputDept" className="form-label">
+                Stanowisko
+              </label>
+              <input
+                type="text"
+                id="inputDept"
+                onChange={this.props.processData}
+                maxLength="30"
+              />
+            </div>
+            <div className="row">
+              <label htmlFor="tel" className="form-label">
+                Telefon
+              </label>
+              <input
+                type="text"
+                id="inputTel"
+                onChange={this.props.processData}
+                maxLength="30"
+              />
             </div>
           </div>
         </form>
-        <Output
-          name={this.state.name}
-          surname={this.state.surname}
-          dept={this.state.dept}
-          tel={this.state.tel}
-          emailName={this.state.emailName}
-          emailSurname={this.state.emailSurname}
-        />
       </div>
-    )
+    );
   }
 }
 
-export default Form
+export default Form;
