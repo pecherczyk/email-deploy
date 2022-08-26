@@ -38,6 +38,28 @@ class Form extends React.Component {
                 maxLength="28"
               />
             </div>
+            <div className="row">
+              <label htmlFor="inputDept" className="form-label">
+                Stanowisko
+              </label>
+              <input
+                type="text"
+                id="inputDept"
+                onChange={this.props.processData}
+                maxLength="30"
+              />
+            </div>
+            <div className="row">
+              <label htmlFor="tel" className="form-label">
+                Telefon
+              </label>
+              <input
+                type="text"
+                id="inputTel"
+                onChange={this.props.processData}
+                maxLength="30"
+              />
+            </div>
           </div>
         </form>
       </div>

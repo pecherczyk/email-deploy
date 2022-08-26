@@ -1,5 +1,5 @@
 import React from 'react'
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import './Template-wpwik.css'
 
 class Output extends React.Component {
   constructor(props) {
@@ -8,14 +8,14 @@ class Output extends React.Component {
   }
   render() {
     return (
-      <div style={{fontFamily: "Arial", marginTop: "20px"}}>
+      <div className="animated fadeIn" style={{fontFamily: "Arial", marginTop: "20px"}}>
         <div style={{fontSize: "18px", fontWeight: "bold", lineHeight: "180%"}}>
           <p style={{margin:"0"}}>{this.props.name} {this.props.surname}</p>
         </div>
         <div style={{lineHeight: "140%", fontSize: "14px"}}>
             <p style={{margin: "0", fontStyle: "italic"}}>{this.props.dept}</p>
             <p style={{margin: "0"}}>{this.props.tel}</p>
-            <p style={{margin: "0"}}>e-mail: <a href={"mailto:" + this.props.emailName + '.' + this.props.emailSurname + "@wpwik.pl"}>{this.props.emailName}.{this.props.emailSurname}@wpwik.pl</a></p>
+            <p style={{margin: "0"}}>e-mail: <a href={"mailto:" + this.props.email}>{this.props.email}</a></p>
         </div>
         <a href="https://www.facebook.com/dobrawodazkranu"><img src="https://raw.githubusercontent.com/wpwik/images/main/fb.png" alt="facebook" /></a>
         <table style={{width: "540px", fontFamily: "Arial"}}>

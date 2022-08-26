@@ -2,13 +2,18 @@ import React from "react";
 import Form from "./Form";
 import validator from "./validator";
 import Template from "./Template";
+import removeDiacritics from "./emailHelper";
+import './App.css'
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       inputName: '',
-      inputSurname: ''
+      inputSurname: '',
+      inputDept: '',
+      inputTel: '',
+      domain: '@wpwik.pl'
     }
     this.handleClick = this.handleClick.bind(this)
     this.processData = this.processData.bind(this)
@@ -47,15 +52,28 @@ class App extends React.Component {
     let template
     if (
       this.state.inputName__ready === 1 &&
-      this.state.inputSurname__ready === 1
+      this.state.inputSurname__ready === 1 &&
+      this.state.inputDept__ready === 1 &&
+      this.state.inputTel__ready === 1
     ) {
+      
+      const email = removeDiacritics(this.state.inputName) + '.' + removeDiacritics(this.state.inputSurname) + this.state.domain
+
       template = 
       <Template 
         name = {this.state.inputName}
         surname = {this.state.inputSurname}
+        dept = {this.state.inputDept}
+        tel = {this.state.inputTel}
+        email = {email}
       />
     } else {
-      template = <div>Nie ma niczego</div>
+      template = 
+      <div>
+        <div className="spin"></div>
+        <div>Proszę wpisać dane...</div>
+      </div>
+      
     }
     return (
       <div>
